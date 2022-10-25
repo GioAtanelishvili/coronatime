@@ -7,8 +7,14 @@ module.exports = {
     ],
     theme: {
         extend: {
+            spacing: {
+                4.5: "1.125rem",
+            },
             fontFamily: {
                 inter: ["Inter", "sans-serif"],
+            },
+            boxShadow: {
+                input: "-3px 3px 0px #DBE8FB, -3px -3px 0px #DBE8FB, 3px -3px 0px #DBE8FB, 3px 3px 0px #DBE8FB",
             },
         },
     },
