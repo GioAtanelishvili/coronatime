@@ -1,8 +1,4 @@
 <x-layouts.auth-layout>
-    @push('scripts')
-        @vite('resources/js/login.js')
-    @endPush
-
     <x-slot:title>
         Sign Up
     </x-slot:title>
@@ -15,7 +11,7 @@
         Please enter required info to sign up
     </x-slot:subheading>
 
-    <x-forms.auth-form action="/auth/login">
+    <x-forms.auth-form action="{{ route('auth.register') }}">
         <x-forms.input id="username" label="Username" name="username" placeholder="Enter unique username or email" />
         <x-forms.input id="email" label="Email" name="email" placeholder="Enter your email" />
         <x-forms.input id="password" label="Password" name="password" placeholder="Fill in password" />
