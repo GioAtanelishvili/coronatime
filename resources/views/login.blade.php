@@ -12,8 +12,8 @@
     </x-slot:subheading>
 
     <x-forms.auth-form action="{{ route('auth.login') }}">
-        <x-forms.input id="username" label="Username" name="username" placeholder="Enter unique username or email" />
-        <x-forms.input id="password" label="Password" name="password" placeholder="Fill in password" />
+        <x-forms.input name="username" id="username" placeholder="Enter unique username or email" label="Username" />
+        <x-forms.input type="password" name="password" id="password" placeholder="Fill in password" label="Password" />
 
         <div class="flex w-full md:w-1/2 md:min-w-[24rem] justify-between items-center">
             <x-forms.checkbox />
