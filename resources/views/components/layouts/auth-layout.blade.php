@@ -5,7 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Coronatime - {{ $title }}</title>
-        @vite('resources/css/app.css', 'resources/js/helpers/Input.js', 'resources/js/helpers/Validation.js')
+
+        @vite('resources/css/app.css')
+        @vite(
+            'resources/js/helpers/RepeatPasswordInput.js', 
+            'resources/js/helpers/PasswordInput.js',
+            'resources/js/helpers/Validation.js', 
+            'resources/js/helpers/Input.js', 
+        )
         
         @if (request()->route()->named('auth.login'))
             @vite('resources/js/login.js')

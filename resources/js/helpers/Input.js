@@ -1,4 +1,4 @@
-import { Validate } from "./index";
+import Validate from "./Validate";
 
 class Input {
     isSubmitted = false;
@@ -105,11 +105,7 @@ class Input {
         }
     };
 
-    _validateOnChange = (e) => {
-        this.isTouched = true;
-
-        Validate[this.name](e.target.value);
-
+    _handleErrors = () => {
         if (this._hasError() && !this.isErrorShown) {
             this._hideSuccess();
             this.showError();
@@ -127,9 +123,15 @@ class Input {
         }
     };
 
-    addChangeListener = () => {
-        this.input.removeEventListener("input", this._validateOnChange);
+    _validateOnChange = (e) => {
+        this.isTouched = true;
 
+        Validate[this.name](e.target.value);
+
+        this._handleErrors();
+    };
+
+    addChangeListener = () => {
         this.input.addEventListener("input", this._validateOnChange);
     };
 }
