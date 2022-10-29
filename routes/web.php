@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('auth')->name('auth.')->group(function () {
-	Route::get('/login', function () {
-		return view('login');
-	})->name('login');
+	Route::view('/login', 'login')->name('login');
 
-	Route::get('/register', function () {
-		return view('register');
-	})->name('register');
+	Route::view('/register', 'register')->name('register');
+
+	Route::post('/register', RegisterController::class)->name('register');
+});
+
+Route::middleware(['auth'])->prefix('email')->name('verification.')->group(function () {
+	Route::view('/verify', 'verify-email')->name('notice');
+
+	Route::get('/verify/{id}/{hash}', VerifyEmailController::class)
+		->middleware(['signed', 'throttle:6,1'])
+		->name('verify');
 });
