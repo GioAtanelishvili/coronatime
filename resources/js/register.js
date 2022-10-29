@@ -2,7 +2,7 @@ import { Input, RepeatPasswordInput, PasswordInput, Validate } from "./helpers";
 
 const form = document.getElementById("form");
 
-const username = new Input("username", "username");
+const name = new Input("name", "name");
 const email = new Input("email", "email");
 const repeatPassword = new RepeatPasswordInput(
     "repeat-password",
@@ -10,18 +10,18 @@ const repeatPassword = new RepeatPasswordInput(
 );
 const password = new PasswordInput("password", "password", repeatPassword);
 
-username.addChangeListener();
+name.addChangeListener();
 email.addChangeListener();
 password.addChangeListener();
 repeatPassword.addChangeListener();
 
 const handleSubmit = (e) => {
-    username.isSubmitted = true;
+    name.isSubmitted = true;
     email.isSubmitted = true;
     password.isSubmitted = true;
     repeatPassword.isSubmitted = true;
 
-    Validate.username(username.input.value);
+    Validate.name(name.input.value);
     Validate.email(email.input.value);
     Validate.password(password.input.value);
     Validate.repeatPassword(repeatPassword.input.value, password.input.value);
@@ -29,8 +29,8 @@ const handleSubmit = (e) => {
     if (Validate.errors.size > 0) {
         e.preventDefault();
 
-        if (Validate.errors.get("username")) {
-            username.showError();
+        if (Validate.errors.get("name")) {
+            name.showError();
         }
 
         if (Validate.errors.get("email")) {

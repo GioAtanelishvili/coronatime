@@ -12,7 +12,7 @@
     </x-slot:subheading>
 
     <x-forms.auth-form action="{{ route('auth.register') }}">
-        <x-forms.input name="username" id="username" placeholder="Enter unique username or email" label="Username" />
+        <x-forms.input name="name" id="name" placeholder="Enter unique username or email" label="Username" />
         <x-forms.input type="email" name="email" id="email" placeholder="Enter your email" label="Email" />
         <x-forms.input type="password" name="password" id="password" label="Password" placeholder="Fill in password" />
         <x-forms.input type="password" name="repeatPassword" id="repeat-password" placeholder="Repeat password" label="Repeat password"  />

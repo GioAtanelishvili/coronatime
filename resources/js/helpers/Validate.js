@@ -4,18 +4,18 @@ const EMAIL_REGEX =
 class Validate {
     static errors = new Map();
 
-    static username = (input) => {
+    static name = (input) => {
         const value = input.trim();
 
         if (value === "") {
-            this.errors.set("username", "Username is required!");
+            this.errors.set("name", "Username is required!");
         } else if (value.length < 3) {
             this.errors.set(
-                "username",
+                "name",
                 "Username should be at least 3 chars long!"
             );
         } else {
-            this.errors.delete("username");
+            this.errors.delete("name");
         }
     };
 

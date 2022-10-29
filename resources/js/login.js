@@ -2,24 +2,24 @@ import { Input, Validate } from "./helpers";
 
 const form = document.getElementById("form");
 
-const username = new Input("username", "username");
+const name = new Input("name", "name");
 const password = new Input("password", "password");
 
-username.addChangeListener();
+name.addChangeListener();
 password.addChangeListener();
 
 const handleSubmit = (e) => {
-    username.isSubmitted = true;
+    name.isSubmitted = true;
     password.isSubmitted = true;
 
-    Validate.username(username.input.value);
+    Validate.name(name.input.value);
     Validate.password(password.input.value);
 
     if (Validate.errors.size > 0) {
         e.preventDefault();
 
-        if (Validate.errors.get("username")) {
-            username.showError();
+        if (Validate.errors.get("name")) {
+            name.showError();
         }
 
         if (Validate.errors.get("password")) {

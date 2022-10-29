@@ -19,7 +19,6 @@
         @elseif (request()->route()->named('auth.register'))
             @vite('resources/js/register.js')
         @endif
-
     </head>
     
     <body>
