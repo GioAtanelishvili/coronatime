@@ -22,6 +22,25 @@ class Input {
         this.name = name;
         this.input = document.getElementById(id);
         this.parent = this.input.parentElement;
+        this.serverSideError = document.getElementById(`${this.name}-error`);
+        this.serverSideSuccess = document.getElementById(
+            `${this.name}-success`
+        );
+
+        if (this.input.value) {
+            this.isSubmitted = true;
+            this.isTouched = true;
+        }
+
+        if (this.serverSideError) {
+            this.isErrorShown = true;
+            this.errorElement = this.serverSideError;
+
+            Validate.errors.set(this.name, "Server side error!");
+        } else if (this.serverSideSuccess) {
+            this.isSuccessShown = true;
+            this.successElement = this.serverSideSuccess;
+        }
     }
 
     _hasError = () => {
@@ -90,7 +109,7 @@ class Input {
             );
 
             this.parent.appendChild(this.successElement);
-            this.input.style.borderColor = "#249E2C";
+            this.input.style.borderColor = "#16A34A";
 
             this.isSuccessShown = true;
         }
@@ -125,6 +144,14 @@ class Input {
 
     _validateOnChange = (e) => {
         this.isTouched = true;
+
+        if (this.serverSideError) {
+            Validate.errors.delete(this.name);
+
+            this.serverSideError.remove();
+            this.serverSideError = null;
+            this.isErrorShown = false;
+        }
 
         Validate[this.name](e.target.value);
 
