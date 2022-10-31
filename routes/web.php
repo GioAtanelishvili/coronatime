@@ -33,3 +33,7 @@ Route::middleware(['auth'])->prefix('email')->name('verification.')->group(funct
 		->middleware(['signed', 'throttle:6,1'])
 		->name('verify');
 });
+
+Route::middleware('guest')->prefix('forgot-password')->name('password.')->group(function () {
+	Route::view('/', 'forgot-password')->name('request');
+});
