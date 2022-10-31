@@ -18,10 +18,10 @@
     >
 
     @if ($isValid && !$isPassword)
-        <x-forms.success :$name />
+        <x-form.success :$name />
     @endif
 
     @error($name)
-        <x-forms.error :$name :$message/>
+        <x-form.error :$name :$message/>
     @enderror
 </div>
