@@ -7,16 +7,10 @@
         <title>Coronatime - {{ $title }}</title>
 
         @vite('resources/css/app.css')
-        @vite(
-            'resources/js/helpers/RepeatPasswordInput.js', 
-            'resources/js/helpers/PasswordInput.js',
-            'resources/js/helpers/Validation.js', 
-            'resources/js/helpers/Input.js', 
-        )
         
-        @if (request()->route()->named('auth.login'))
+        @if (request()->routeIs('auth.login'))
             @vite('resources/js/login.js')
-        @elseif (request()->route()->named('auth.register'))
+        @elseif (request()->routeIs('auth.register'))
             @vite('resources/js/register.js')
         @endif
     </head>

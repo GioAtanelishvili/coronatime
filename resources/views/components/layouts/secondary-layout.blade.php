@@ -7,6 +7,10 @@
         <title>Coronatime - {{ $title }}</title>
 
         @vite('resources/css/app.css')
+
+        @if (request()->routeIs('password.request'))
+            @vite('resources/js/forgot-password.js')
+        @endif
     </head>
     
     <body>
@@ -14,8 +18,6 @@
             <x-UI.logo />
         </header>
         
-        <main class="mt-48 md:mt-80">
-            {{ $slot }}
-        </main>
+        {{ $slot }}
     </body>
 </html>
