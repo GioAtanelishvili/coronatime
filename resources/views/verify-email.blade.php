@@ -3,10 +3,10 @@
         Verify email
     </x-slot:title>
     
-    <section class="flex flex-col justify-center items-center gap-4">
+    <main class="flex mt-48 md:mt-80 flex-col justify-center items-center gap-4">
         <x-UI.verification-notice-checkmark />
         <p class="text-lg">
             We have sent you a confirmation email
         </p>
-    </section>
+    </main>
 </x-layouts.secondary-layout>

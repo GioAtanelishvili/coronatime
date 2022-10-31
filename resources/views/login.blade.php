@@ -17,7 +17,7 @@
 
         <div class="flex w-full md:w-1/2 md:min-w-[24rem] justify-between items-center">
             <x-form.checkbox />
-            <a href="#" class="text-blue-700 text-sm font-semibold">Forgot password?</a>
+            <a href="{{ route('password.request') }}" class="text-blue-700 text-sm font-semibold">Forgot password?</a>
         </div>
         
         <x-form.submit>LOG IN</x-form.submit>
