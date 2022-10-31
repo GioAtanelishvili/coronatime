@@ -2,6 +2,7 @@
 
 @php
     $isValid = old($name) && !$errors->first($name);
+    $isInvalid = $errors->first($name);
     $isPassword = $type === 'password'
 @endphp
 
@@ -13,7 +14,7 @@
         id="{{ $id }}" 
         value="@if(!$isPassword){{ old($name) }}@endif"
         placeholder="{{ $placeholder }}" 
-        @class(['text-black placeholder:text-zinc-500 py-4.5 px-6 text-base font-normal border focus:border-blue-700 rounded-lg focus:shadow-input outline-none', 'border-neutral-200', 'border-green-600' => $isValid && !$isPassword])
+        @class(['text-black placeholder:text-zinc-500 py-4.5 px-6 text-base font-normal border focus:border-blue-700 rounded-lg focus:shadow-input outline-none', 'border-neutral-200', 'border-green-600' => $isValid && !$isPassword, 'border-red-700' => $isInvalid])
     >
 
     @if ($isValid && !$isPassword)
