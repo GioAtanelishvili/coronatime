@@ -8,11 +8,11 @@ class Validate {
         const value = input.trim();
 
         if (value === "") {
-            this.errors.set("name", "Username is required!");
+            this.errors.set("name", "The username field is required.");
         } else if (value.length < 3) {
             this.errors.set(
                 "name",
-                "Username should be at least 3 chars long!"
+                "The username must be at least 3 characters."
             );
         } else {
             this.errors.delete("name");
@@ -23,9 +23,12 @@ class Validate {
         const value = input.trim();
 
         if (value === "") {
-            this.errors.set("email", "Email is required!");
+            this.errors.set("email", "The email field is required.");
         } else if (!value.toLowerCase().match(EMAIL_REGEX)) {
-            this.errors.set("email", "Email should be valid!");
+            this.errors.set(
+                "email",
+                "The email must be a valid email address."
+            );
         } else {
             this.errors.delete("email");
         }
@@ -35,11 +38,11 @@ class Validate {
         const value = input.trim();
 
         if (value === "") {
-            this.errors.set("password", "Password is required!");
+            this.errors.set("password", "The password field is required.");
         } else if (value.length < 3) {
             this.errors.set(
                 "password",
-                "Password should be at least 3 chars long!"
+                "The password must be at least 3 characters."
             );
         } else {
             this.errors.delete("password");
@@ -50,11 +53,14 @@ class Validate {
         const value = input.trim();
 
         if (value === "") {
-            this.errors.set("repeatPassword", "Repeat password is required!");
+            this.errors.set(
+                "repeatPassword",
+                "The repeat password field is required."
+            );
         } else if (value !== password.trim()) {
             this.errors.set(
                 "repeatPassword",
-                "Repeat password should match password!"
+                "The repeat password and password must match."
             );
         } else {
             this.errors.delete("repeatPassword");
