@@ -16,7 +16,7 @@ class ResetPasswordController extends Controller
 		$status = Password::sendResetLink($request->only('email'));
 
 		return $status === Password::RESET_LINK_SENT
-				? redirect()->route('password.notice')
+				? redirect()->route('password.forgot.notice')
 				: back()->withErrors(['email' => __($status)]);
 	}
 
@@ -40,6 +40,6 @@ class ResetPasswordController extends Controller
 			}
 		);
 
-		return redirect()->route('auth.login');
+		return redirect()->route('password.reset.notice');
 	}
 }

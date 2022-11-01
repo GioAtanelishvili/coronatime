@@ -28,7 +28,7 @@ Route::prefix('/auth')->name('auth.')->group(function () {
 });
 
 Route::middleware(['auth'])->prefix('/email')->name('verification.')->group(function () {
-	Route::view('/verify/notification', 'notification')->name('notice');
+	Route::view('/verify/notification', 'email-notification')->name('notice');
 
 	Route::get('/verify/{id}/{hash}', VerifyEmailController::class)
 		->middleware(['signed', 'throttle:6,1'])
@@ -36,13 +36,19 @@ Route::middleware(['auth'])->prefix('/email')->name('verification.')->group(func
 });
 
 Route::middleware('guest')->name('password.')->group(function () {
-	Route::view('/forgot-password', 'forgot-password')->name('request');
+	Route::prefix('/forgot-password')->group(function () {
+		Route::view('/', 'forgot-password')->name('request');
 
-	Route::post('/forgot-password', [ResetPasswordController::class, 'email'])->name('email');
+		Route::post('/', [ResetPasswordController::class, 'email'])->name('email');
 
-	Route::view('/reset-password/notification', 'notification')->name('notice');
+		Route::view('/notification', 'email-notification')->name('forgot.notice');
+	});
 
-	Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->name('reset');
+	Route::prefix('/reset-password')->group(function () {
+		Route::view('/notification', 'password-notification')->name('reset.notice');
 
-	Route::patch('/reset-password', [ResetPasswordController::class, 'update'])->name('update');
+		Route::get('/{token}', [ResetPasswordController::class, 'show'])->name('reset');
+
+		Route::patch('/', [ResetPasswordController::class, 'update'])->name('update');
+	});
 });
