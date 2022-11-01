@@ -3,6 +3,7 @@
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->name('auth.')->group(function () {
+Route::prefix('/auth')->name('auth.')->group(function () {
 	Route::view('/login', 'login')->name('login');
 
 	Route::post('/login', LoginController::class)->name('login');
@@ -26,14 +27,22 @@ Route::prefix('auth')->name('auth.')->group(function () {
 	Route::post('/register', RegisterController::class)->name('register');
 });
 
-Route::middleware(['auth'])->prefix('email')->name('verification.')->group(function () {
-	Route::view('/verify', 'verify-email')->name('notice');
+Route::middleware(['auth'])->prefix('/email')->name('verification.')->group(function () {
+	Route::view('/verify/notification', 'notification')->name('notice');
 
 	Route::get('/verify/{id}/{hash}', VerifyEmailController::class)
 		->middleware(['signed', 'throttle:6,1'])
 		->name('verify');
 });
 
-Route::middleware('guest')->prefix('forgot-password')->name('password.')->group(function () {
-	Route::view('/', 'forgot-password')->name('request');
+Route::middleware('guest')->name('password.')->group(function () {
+	Route::view('/forgot-password', 'forgot-password')->name('request');
+
+	Route::post('/forgot-password', [ResetPasswordController::class, 'email'])->name('email');
+
+	Route::view('/reset-password/notification', 'notification')->name('notice');
+
+	Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->name('reset');
+
+	Route::patch('/reset-password', [ResetPasswordController::class, 'update'])->name('update');
 });
