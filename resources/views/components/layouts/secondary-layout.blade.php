@@ -10,6 +10,8 @@
 
         @if (request()->routeIs('password.request'))
             @vite('resources/js/forgot-password.js')
+        @elseif (request()->routeIs('password.reset'))
+            @vite('resources/js/reset-password.js')
         @endif
     </head>
     

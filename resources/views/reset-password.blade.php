@@ -10,7 +10,7 @@
             @method('PATCH')
 
             <x-form.input type="password" name="password" id="password" placeholder="Enter your password" label="New password" />
-            <x-form.input type="password" name="password_confirmation" id="password-confimation" placeholder="Repeat password" label="Repeat password" />
+            <x-form.input type="password" name="password_confirmation" id="password-confirmation" placeholder="Repeat password" label="Repeat password" />
             
             <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="token" value="{{ $token }}">
