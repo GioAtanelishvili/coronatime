@@ -15,7 +15,7 @@
         <x-form.input name="name" id="name" placeholder="Enter unique username or email" label="Username" />
         <x-form.input type="email" name="email" id="email" placeholder="Enter your email" label="Email" />
         <x-form.input type="password" name="password" id="password" label="Password" placeholder="Fill in password" />
-        <x-form.input type="password" name="repeatPassword" id="repeat-password" placeholder="Repeat password" label="Repeat password"  />
+        <x-form.input type="password" name="password_confirmation" id="password-confirmation" placeholder="Repeat password" label="Repeat password"  />
         
         <x-form.submit>SIGN UP</x-form.submit>
     </x-form>

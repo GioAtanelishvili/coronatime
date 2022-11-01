@@ -1,30 +1,42 @@
-import { Input, RepeatPasswordInput, PasswordInput, Validate } from "./helpers";
+import {
+    PasswordConfirmationInput,
+    PasswordInput,
+    Validate,
+    Input,
+} from "./helpers";
 
 const form = document.getElementById("form");
 
 const name = new Input("name", "name");
 const email = new Input("email", "email");
-const repeatPassword = new RepeatPasswordInput(
-    "repeat-password",
-    "repeatPassword"
+const passwordConfirmation = new PasswordConfirmationInput(
+    "password-confirmation",
+    "password_confirmation"
 );
-const password = new PasswordInput("password", "password", repeatPassword);
+const password = new PasswordInput(
+    "password",
+    "password",
+    passwordConfirmation
+);
 
 name.addChangeListener();
 email.addChangeListener();
 password.addChangeListener();
-repeatPassword.addChangeListener();
+passwordConfirmation.addChangeListener();
 
 const handleSubmit = (e) => {
     name.isSubmitted = true;
     email.isSubmitted = true;
     password.isSubmitted = true;
-    repeatPassword.isSubmitted = true;
+    passwordConfirmation.isSubmitted = true;
 
     Validate.name(name.input.value);
     Validate.email(email.input.value);
     Validate.password(password.input.value);
-    Validate.repeatPassword(repeatPassword.input.value, password.input.value);
+    Validate.passwordConfirmation(
+        passwordConfirmation.input.value,
+        password.input.value
+    );
 
     if (Validate.errors.size > 0) {
         e.preventDefault();
@@ -41,8 +53,8 @@ const handleSubmit = (e) => {
             password.showError();
         }
 
-        if (Validate.errors.get("repeatPassword")) {
-            repeatPassword.showError();
+        if (Validate.errors.get("password_confirmation")) {
+            passwordConfirmation.showError();
         }
     }
 };

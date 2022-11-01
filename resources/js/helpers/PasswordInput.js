@@ -2,17 +2,17 @@ import Validate from "./Validate";
 import Input from "./Input";
 
 class PasswordInput extends Input {
-    constructor(id, name, repeatPassword) {
+    constructor(id, name, passwordConfirmation) {
         super(id, name);
 
-        this.repeatPassword = repeatPassword;
+        this.passwordConfirmation = passwordConfirmation;
     }
 
     _validateOnChange = (e) => {
         this.isTouched = true;
 
         Validate.password(e.target.value);
-        this.repeatPassword.validateOnPasswordChange(e);
+        this.passwordConfirmation.validateOnPasswordChange(e);
 
         this._handleErrors();
     };

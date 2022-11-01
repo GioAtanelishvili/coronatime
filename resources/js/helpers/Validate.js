@@ -49,21 +49,21 @@ class Validate {
         }
     };
 
-    static repeatPassword = (input, password) => {
+    static passwordConfirmation = (input, password) => {
         const value = input.trim();
 
         if (value === "") {
             this.errors.set(
-                "repeatPassword",
+                "password_confirmation",
                 "The repeat password field is required."
             );
         } else if (value !== password.trim()) {
             this.errors.set(
-                "repeatPassword",
+                "password_confirmation",
                 "The repeat password and password must match."
             );
         } else {
-            this.errors.delete("repeatPassword");
+            this.errors.delete("password_confirmation");
         }
     };
 }

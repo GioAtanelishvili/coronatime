@@ -1,7 +1,7 @@
 import Validate from "./Validate";
 import Input from "./Input";
 
-class RepeatPasswordInput extends Input {
+class PasswordConfirmationInput extends Input {
     constructor(id, name) {
         super(id, name);
 
@@ -9,7 +9,7 @@ class RepeatPasswordInput extends Input {
     }
 
     validateOnPasswordChange = (e) => {
-        Validate.repeatPassword(this.input.value, e.target.value);
+        Validate.passwordConfirmation(this.input.value, e.target.value);
 
         this._handleErrors();
     };
@@ -17,7 +17,10 @@ class RepeatPasswordInput extends Input {
     _validateOnChange = (e) => {
         this.isTouched = true;
 
-        Validate.repeatPassword(e.target.value, this.passwordElement.value);
+        Validate.passwordConfirmation(
+            e.target.value,
+            this.passwordElement.value
+        );
 
         if (this._hasError() && !this.isErrorShown) {
             this._hideSuccess();
@@ -41,4 +44,4 @@ class RepeatPasswordInput extends Input {
     };
 }
 
-export default RepeatPasswordInput;
+export default PasswordConfirmationInput;
