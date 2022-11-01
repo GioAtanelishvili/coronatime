@@ -1,5 +1,3 @@
-@props(['url'])
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,10 +18,10 @@
             </figure>
             
             <section style="width:100%; max-width:32.5rem; margin:3.5rem auto 0;">
-                <h1 style="color:#000000; font-size:1.5rem; text-align:center; font-weight:900;">Confirmation email</h1>
-                <h2 style="color:#000000; margin-top:1rem; font-size:1.125rem; text-align:center;">click this button to verify your email</h2>
+                <h1 style="color:#000000; font-size:1.5rem; text-align:center; font-weight:900;">{{ $heading }}</h1>
+                <h2 style="color:#000000; margin-top:1rem; font-size:1.125rem; text-align:center; font-weight:400;">{{ $subheading }}</h2>
                 <a href="{{ $url }}" style="background-color:#22c55e; color:#ffffff; display:block; width:100%; max-width:24rem; margin:2.5rem auto 0; padding:1.125rem 0; font-size:0.875rem; text-align:center; font-weight:900; text-decoration:none; border-radius:0.5rem;" >
-                    VERIFY EMAIL
+                    {{ $button }}
                 </a>
             </section>
         </main>
