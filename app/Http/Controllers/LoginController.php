@@ -16,9 +16,9 @@ class LoginController extends Controller
 	 */
 	public function __invoke(LoginRequest $request)
 	{
-		$credentials = $request->validated();
+		$credentials = $request->except(['remember', '_token']);
 
-		if (Auth::attempt($credentials, $credentials['remember']))
+		if (Auth::attempt($credentials, $request->only('remember')))
 		{
 			$request->session()->regenerate();
 
@@ -27,7 +27,7 @@ class LoginController extends Controller
 		else
 		{
 			return back()->withErrors([
-				'name' => 'The provided credentials do not match our records.',
+				'password' => 'The provided credentials do not match our records.',
 			])->onlyInput('name');
 		}
 	}
