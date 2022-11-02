@@ -17,7 +17,10 @@
                 <div class="hidden md:flex items-center gap-4">
                     <span class="text-base font-bold capitalize">{{ auth()->user()->name }}</span>
                     <div class="bg-neutral-200 w-[1px] h-8"></div>
-                    <a href="#">Log Out</a>
+                    <form action="{{ route('auth.logout') }}" method="post">
+                        @csrf()
+                        <button type="submit">Log Out</button>
+                    </form>
                 </div>
             </div>
         </header>
