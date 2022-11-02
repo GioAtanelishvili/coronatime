@@ -25,7 +25,7 @@ class LoginRequest extends FormRequest
 	{
 		return [
 			'name'     => ['required_without:email', 'min:3', 'max:255'],
-			'email'    => ['required_without:name', 'unique:users', 'email', 'max:255'],
+			'email'    => ['required_without:name', 'email', 'max:255'],
 			'password' => ['required', 'min:3', 'max:255'],
 			'remember' => ['required', 'boolean'],
 		];
