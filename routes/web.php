@@ -3,6 +3,7 @@
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,8 @@ Route::prefix('/auth')->name('auth.')->group(function () {
 	Route::view('/register', 'register')->name('register');
 
 	Route::post('/register', RegisterController::class)->name('register');
+
+	Route::post('/logout', LogoutController::class)->name('logout');
 });
 
 Route::middleware(['auth'])->prefix('/email')->name('verification.')->group(function () {
