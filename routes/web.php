@@ -35,6 +35,12 @@ Route::middleware(['auth'])->prefix('/email')->name('verification.')->group(func
 		->name('verify');
 });
 
+Route::middleware(['auth'])->name('dashboard.')->group(function () {
+	Route::view('/', 'dashboard-worldwide')->name('worldwide');
+
+	Route::view('/country', 'dashboard-country')->name('country');
+});
+
 Route::middleware('guest')->name('password.')->group(function () {
 	Route::prefix('/forgot-password')->group(function () {
 		Route::view('/', 'forgot-password')->name('request');
