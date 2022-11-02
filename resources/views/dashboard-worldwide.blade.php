@@ -2,4 +2,6 @@
     <x-slot:title>
         Worldwide
     </x-slot:title>
+
+    <x-dashboard.stats-grid />
 </x-layouts.dashboard-layout>
