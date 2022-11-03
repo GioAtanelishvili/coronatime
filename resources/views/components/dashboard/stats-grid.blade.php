@@ -9,7 +9,7 @@
         </x-slot:title>
 
         <x-slot:stat>
-            <span class="text-blue-700">715,523</span>
+            <span class="text-blue-700">{{ $format($confirmed) }}</span>
         </x-slot:stat>
     </x-dashboard.stat-card>
 
@@ -23,7 +23,7 @@
         </x-slot:title>
 
         <x-slot:stat>
-            <span class="text-green-500">72,005</span>
+            <span class="text-green-500">{{ $format($recovered) }}</span>
         </x-slot:stat>
     </x-dashboard.stat-card>
 
@@ -37,7 +37,7 @@
         </x-slot:title>
 
         <x-slot:stat>
-            <span class="text-yellow-400">8,332</span>
+            <span class="text-yellow-400">{{ $format($deaths) }}</span>
         </x-slot:stat>
     </x-dashboard.stat-card>
 </section>
