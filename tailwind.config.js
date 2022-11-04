@@ -16,6 +16,9 @@ module.exports = {
             boxShadow: {
                 input: "-3px 3px 0px #DBE8FB, -3px -3px 0px #DBE8FB, 3px -3px 0px #DBE8FB, 3px 3px 0px #DBE8FB",
             },
+            gridTemplateColumns: {
+                table: "minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) 0.5rem",
+            },
         },
     },
     plugins: [],

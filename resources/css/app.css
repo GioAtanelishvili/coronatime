@@ -8,4 +8,19 @@
     html {
         font-family: Inter, sans-serif;
     }
+
+    #tbody::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    #tbody::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    #tbody::-webkit-scrollbar-thumb {
+        background-color: #808189;
+        border-radius: 0.25rem;
+    }
+    #tbody::-webkit-scrollbar-thumb:hover {
+        background-color: #606169;
+    }
 }

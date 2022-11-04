@@ -2,31 +2,17 @@
 
 namespace App\View\Components\Dashboard;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
+use App\Models\Country;
 
-class StatsGrid extends Component
+class StatsTable extends Component
 {
 	/**
-	 * Total number of new cases
+	 * The records of the countries table.
 	 *
-	 * @var int
+	 * @var \Illuminate\Support\Collection
 	 */
-	public $confirmed;
-
-	/**
-	 * Total number of recovers
-	 *
-	 * @var int
-	 */
-	public $recovered;
-
-	/**
-	 * Total number of deaths
-	 *
-	 * @var int
-	 */
-	public $deaths;
+	public $countries;
 
 	/**
 	 * Create a new component instance.
@@ -35,9 +21,7 @@ class StatsGrid extends Component
 	 */
 	public function __construct()
 	{
-		$this->confirmed = DB::table('countries')->sum('confirmed');
-		$this->recovered = DB::table('countries')->sum('recovered');
-		$this->deaths = DB::table('countries')->sum('deaths');
+		$this->countries = Country::all();
 	}
 
 	/**
@@ -61,7 +45,6 @@ class StatsGrid extends Component
 				$formated .= ',' . $str->substr($i, 3);
 			}
 		}
-
 		return $formated;
 	}
 
@@ -72,6 +55,6 @@ class StatsGrid extends Component
 	 */
 	public function render()
 	{
-		return view('components.dashboard.stats-grid');
+		return view('components.dashboard.stats-table');
 	}
 }
