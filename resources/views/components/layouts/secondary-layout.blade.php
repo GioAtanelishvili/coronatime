@@ -16,7 +16,7 @@
     </head>
     
     <body>
-        <header class="mt-6 md:mt-10 flex justify-center">
+        <header class="mt-6 md:mt-10 mb-4 flex justify-center">
             <x-UI.logo />
         </header>
         

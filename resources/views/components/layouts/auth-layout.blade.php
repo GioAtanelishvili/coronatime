@@ -20,7 +20,7 @@
             <x-UI.logo />
         </header>
         
-        <main class="my-10 md:my-14 mx-4 md:mx-28">
+        <main class="mt-10 md:mt-14 mb-4 mx-4 md:mx-28">
             <h1 class="text-black text-xl md:text-2xl font-black">{{ $heading }}</h1>
             <h2 class="text-zinc-500 mt-2 md:mt-4 text-base md:text-xl font-normal">{{ $subheading }}</h2>
             

@@ -25,7 +25,7 @@
             </div>
         </header>
         
-        <main class="mt-11 mb-5 md:my-14 mx-4 md:mx-28">
+        <main class="mt-11 md:mt-14 mb-4 mx-4 md:mx-28">
             <h1 class="text-black text-xl md:text-2xl font-black">Worldwide Statistics</h1>
             
             <x-dashboard.nav />
