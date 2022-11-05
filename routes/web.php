@@ -30,7 +30,7 @@ Route::prefix('/auth')->name('auth.')->group(function () {
 	Route::post('/logout', LogoutController::class)->name('logout');
 });
 
-Route::middleware(['auth'])->prefix('/email')->name('verification.')->group(function () {
+Route::prefix('/email')->name('verification.')->group(function () {
 	Route::view('/verify/notification', 'email-notification')->name('notice');
 
 	Route::get('/verify/{id}/{hash}', VerifyEmailController::class)

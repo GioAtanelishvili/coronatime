@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Requests\VerifyEmailRequest;
 
 class VerifyEmailController extends Controller
 {
@@ -13,7 +13,7 @@ class VerifyEmailController extends Controller
 	 *
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function __invoke(EmailVerificationRequest $request)
+	public function __invoke(VerifyEmailRequest $request)
 	{
 		$request->fulfill();
 
