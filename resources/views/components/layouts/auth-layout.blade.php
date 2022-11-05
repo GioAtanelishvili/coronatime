@@ -16,8 +16,9 @@
     </head>
     
     <body>
-        <header class="mt-6 md:mt-10 ml-4 md:ml-28">
+        <header class="flex mt-6 md:mt-10 mx-4 md:mx-28 justify-between md:justify-start items-center gap-10">
             <x-UI.logo />
+            <x-shared.select />
         </header>
         
         <main class="mt-10 md:mt-14 mb-4 mx-4 md:mx-28">

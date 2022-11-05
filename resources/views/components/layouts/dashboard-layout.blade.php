@@ -24,13 +24,13 @@
                 <div class="bg-neutral-200 w-[1px] h-8"></div>
                 <form action="{{ route('auth.logout') }}" method="post">
                     @csrf()
-                    <button type="submit">Log Out</button>
+                    <button type="submit">{{ __('Log Out') }}</button>
                 </form>
             </div>
         </header>
         
         <main class="mt-11 md:mt-14 mb-4 mx-4 md:mx-28">
-            <h1 class="text-black text-xl md:text-2xl font-black">Worldwide Statistics</h1>
+            <h1 class="text-black text-xl md:text-2xl font-black">{{ __('Worldwide Statistics') }}</h1>
             
             <x-dashboard.nav />
 

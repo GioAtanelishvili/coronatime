@@ -1,6 +1,6 @@
 <x-layouts.dashboard-layout>
     <x-slot:title>
-        Worldwide
+        {{ __('Worldwide') }}
     </x-slot:title>
 
     <x-dashboard.stats-grid />

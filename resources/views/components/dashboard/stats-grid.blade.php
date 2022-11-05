@@ -5,7 +5,7 @@
         </x-slot:icon>
 
         <x-slot:title>
-            New cases
+            {{ __('New cases') }}
         </x-slot:title>
 
         <x-slot:stat>
@@ -19,7 +19,7 @@
         </x-slot:icon>
 
         <x-slot:title>
-            Recovered
+            {{ __('Recovered') }}
         </x-slot:title>
 
         <x-slot:stat>
@@ -33,7 +33,7 @@
         </x-slot:icon>
 
         <x-slot:title>
-            Death
+            {{ __('Death') }}
         </x-slot:title>
 
         <x-slot:stat>
