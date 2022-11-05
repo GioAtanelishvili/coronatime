@@ -7,6 +7,10 @@
         <title>Coronatime - {{ $title }}</title>
 
         @vite('resources/css/app.css')
+
+        @if (request()->routeIs('dashboard.country'))
+            @vite('resources/js/countries.js')
+        @endif
     </head>
     
     <body>
