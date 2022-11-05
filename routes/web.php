@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -61,3 +62,5 @@ Route::middleware('guest')->name('password.')->group(function () {
 		Route::patch('/', [ResetPasswordController::class, 'update'])->name('update');
 	});
 });
+
+Route::get('/language/{locale}', LanguageController::class)->name('language')->whereIn('locale', ['en', 'ka']);
