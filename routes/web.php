@@ -38,7 +38,7 @@ Route::prefix('/email')->name('verification.')->group(function () {
 		->name('verify');
 });
 
-Route::middleware(['auth'])->name('dashboard.')->group(function () {
+Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
 	Route::view('/', 'dashboard-worldwide')->name('worldwide');
 
 	Route::view('/country', 'dashboard-country')->name('country');
