@@ -1,4 +1,4 @@
-<div class="group pb-1 relative">
+<div id="select" data-language="{{ app()->currentLocale() }}" class="group pb-1 relative">
     <button class="peer flex justify-center items-center gap-2">
         {{ __('English') }}
         <x-UI.select-arrow />

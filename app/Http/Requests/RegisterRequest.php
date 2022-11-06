@@ -34,7 +34,8 @@ class RegisterRequest extends FormRequest
 	public function attributes()
 	{
 		return [
-			'name' => 'username',
+			'name'                  => 'username',
+			'password_confirmation' => 'password confirmation',
 		];
 	}
 }

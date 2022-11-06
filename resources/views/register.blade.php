@@ -17,7 +17,7 @@
         <x-form.input type="password" name="password" id="password" label="Password" placeholder="Fill in password" />
         <x-form.input type="password" name="password_confirmation" id="password-confirmation" placeholder="Repeat password" label="Repeat password"  />
         
-        <x-form.submit>{{ __('SIGN UP') }}</x-form.submit>
+        <x-form.submit class="mt-1">{{ __('SIGN UP') }}</x-form.submit>
     </x-form>
 
     <x-slot:footer>
