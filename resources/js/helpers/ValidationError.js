@@ -11,7 +11,7 @@ class ValidationError {
             const possesive = this._toPossessive(ka);
 
             this.required = `${possesive} ველი სავალდებულოა.`;
-            this.length = `${possesive} ველი უნდა შედგებოდეს მინიმუმ სამი სიმბოლოსგან.`;
+            this.length = `${possesive} ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან.`;
             this.email = "ელ-ფოსტა უნდა იყოს ვალიდური ელ-ფოსტის მისამართი.";
             this.match = "გამეორებული პაროლი და პაროლი უნდა ემთხვეოდეს.";
         }

@@ -30,12 +30,4 @@ class RegisterRequest extends FormRequest
 			'password_confirmation' => ['required', 'same:password', 'max:255'],
 		];
 	}
-
-	public function attributes()
-	{
-		return [
-			'name'                  => 'username',
-			'password_confirmation' => 'password confirmation',
-		];
-	}
 }
