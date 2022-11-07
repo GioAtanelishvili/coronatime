@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -18,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/language/{locale}', LanguageController::class)->name('language')->whereIn('locale', ['en', 'ka']);
 
 Route::prefix('/auth')->name('auth.')->group(function () {
 	Route::view('/login', 'login')->name('login');
@@ -63,4 +64,4 @@ Route::middleware('guest')->name('password.')->group(function () {
 	});
 });
 
-Route::get('/language/{locale}', LanguageController::class)->name('language')->whereIn('locale', ['en', 'ka']);
+Route::fallback(fn () => redirect()->route('dashboard.worldwide'));
