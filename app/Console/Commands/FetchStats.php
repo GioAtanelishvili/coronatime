@@ -31,9 +31,16 @@ class FetchStats extends Command
 	{
 		if ($this->option('update'))
 		{
-			$this->newLine()->withProgressBar(Country::all(), fn ($country) => $country->updateStats());
+			if (Country::count() !== 0)
+			{
+				$this->newLine()->withProgressBar(Country::all(), fn ($country) => $country->updateStats());
 
-			$this->newLine(2)->info('Stats updated successfully!');
+				$this->newLine(2)->info('Stats updated successfully!');
+			}
+			else
+			{
+				$this->newLine()->error('Stats aren\'t fetched yet!');
+			}
 		}
 		else
 		{
