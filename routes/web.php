@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/language/{locale}', LanguageController::class)->name('language')->whereIn('locale', ['en', 'ka']);
 
-Route::prefix('/auth')->name('auth.')->group(function () {
+Route::middleware('guest')->prefix('/auth')->name('auth.')->group(function () {
 	Route::view('/login', 'login')->name('login');
 
 	Route::post('/login', LoginController::class)->name('login');
@@ -29,7 +30,7 @@ Route::prefix('/auth')->name('auth.')->group(function () {
 
 	Route::post('/register', RegisterController::class)->name('register');
 
-	Route::post('/logout', LogoutController::class)->name('logout');
+	Route::post('/logout', LogoutController::class)->name('logout')->withoutMiddleware('guest');
 });
 
 Route::prefix('/email')->name('verification.')->group(function () {
