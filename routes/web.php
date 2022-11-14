@@ -30,7 +30,7 @@ Route::middleware('guest')->prefix('/auth')->name('auth.')->group(function () {
 
 	Route::post('/register', RegisterController::class)->name('register');
 
-	Route::post('/logout', LogoutController::class)->name('logout')->withoutMiddleware('guest');
+	Route::post('/logout', LogoutController::class)->name('logout')->middleware('auth')->withoutMiddleware('guest');
 });
 
 Route::prefix('/email')->name('verification.')->group(function () {
