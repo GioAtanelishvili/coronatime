@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
@@ -49,6 +51,8 @@ class RegisterTest extends TestCase
 
 	public function test_submitting_form_with_valid_data_redirects_user_to_verification_notice_page()
 	{
+		Notification::fake();
+
 		$response = $this->post('/auth/register', [
 			'name'                  => 'qristefore',
 			'email'                 => 'tamunia@gmail.com',
@@ -57,5 +61,21 @@ class RegisterTest extends TestCase
 		]);
 
 		$response->assertStatus(302)->assertRedirect('/email/verify/notification');
+	}
+
+	public function test_submitting_form_with_valid_data_sends_verification_link_to_user_email()
+	{
+		Notification::fake();
+
+		$this->post('/auth/register', [
+			'name'                  => 'qristefore',
+			'email'                 => 'tamunia@gmail.com',
+			'password'              => 'tavisufleba',
+			'password_confirmation' => 'tavisufleba',
+		]);
+
+		$user = User::first();
+
+		Notification::assertSentTo([$user], VerifyEmail::class);
 	}
 }
