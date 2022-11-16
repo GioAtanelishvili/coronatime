@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 use Tests\TestCase;
 
-class LoginTest extends TestCase
+class AuthTest extends TestCase
 {
 	use RefreshDatabase;
 
@@ -45,11 +45,9 @@ class LoginTest extends TestCase
 
 	public function test_user_is_able_to_authenticate_with_name()
 	{
-		User::create([
-			'name'              => 'pipinia',
-			'email'             => 'peri@gmail.com',
-			'password'          => 'portaturi',
-			'email_verified_at' => now(),
+		User::factory()->create([
+			'name'     => 'pipinia',
+			'password' => 'portaturi',
 		]);
 
 		$response = $this->post('/auth/login', [
@@ -62,11 +60,9 @@ class LoginTest extends TestCase
 
 	public function test_user_is_able_to_authenticate_with_email()
 	{
-		User::create([
-			'name'              => 'pipinia',
-			'email'             => 'peri@gmail.com',
-			'password'          => 'portaturi',
-			'email_verified_at' => now(),
+		User::factory()->create([
+			'name'     => 'peri@gmail.com',
+			'password' => 'portaturi',
 		]);
 
 		$response = $this->post('/auth/login', [
@@ -75,5 +71,25 @@ class LoginTest extends TestCase
 		]);
 
 		$response->assertStatus(302)->assertSessionHas('_token')->assertRedirect('/');
+	}
+
+	public function test_authenticated_user_is_able_to_log_out()
+	{
+		$user = User::factory()->create();
+
+		$this->be($user)->post('/auth/logout');
+
+		$this->assertGuest();
+	}
+
+	public function test_log_out_route_redirects_user_to_log_in_page()
+	{
+		$user = User::factory()->create();
+
+		$this->be($user)->assertAuthenticated();
+
+		$response = $this->post('/auth/logout');
+
+		$response->assertStatus(302)->assertRedirect('/auth/login');
 	}
 }
