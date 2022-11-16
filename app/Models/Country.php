@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\DB;
 
 class Country extends Model
 {
@@ -21,11 +22,11 @@ class Country extends Model
 	];
 
 	/**
-	 * Indicates if the model should be timestamped.
+	 * The attributes that are mass assignable.
 	 *
-	 * @var bool
+	 * @var array
 	 */
-	public $timestamps = false;
+	protected $fillable = ['code', 'name', 'confirmed', 'recovered', 'critical', 'deaths'];
 
 	/**
 	 * Insert new Country record.
@@ -40,9 +41,9 @@ class Country extends Model
 			'code' => $country['code'],
 		])->json();
 
-		DB::table('countries')->insert([
+		self::create([
 			'code'      => $country['code'],
-			'name'      => json_encode($country['name'], JSON_UNESCAPED_UNICODE),
+			'name'      => $country['name'],
 			'confirmed' => $stats['confirmed'],
 			'recovered' => $stats['recovered'],
 			'critical'  => $stats['critical'],
@@ -61,11 +62,28 @@ class Country extends Model
 			'code' => $this->code,
 		])->json();
 
-		$this->confirmed = $stats['confirmed'];
-		$this->recovered = $stats['recovered'];
-		$this->critical = $stats['critical'];
-		$this->deaths = $stats['deaths'];
+		$last_updated_at = new Carbon($stats['updated_at']);
 
-		$this->save();
+		if ($last_updated_at->greaterThan($this->updated_at))
+		{
+			$this->confirmed = $stats['confirmed'];
+			$this->recovered = $stats['recovered'];
+			$this->critical = $stats['critical'];
+			$this->deaths = $stats['deaths'];
+
+			$this->save();
+		}
+	}
+
+	/**
+	 * Cast country name to JSON.
+	 *
+	 * @return use Illuminate\Database\Eloquent\Casts\Attribute
+	 */
+	protected function name(): Attribute
+	{
+		return Attribute::make(
+			set: fn ($value) => json_encode($value, JSON_UNESCAPED_UNICODE)
+		);
 	}
 }

@@ -20,6 +20,7 @@ return new class extends Migration {
 			$table->mediumInteger('recovered');
 			$table->mediumInteger('critical');
 			$table->mediumInteger('deaths');
+			$table->timestamps();
 		});
 	}
 
